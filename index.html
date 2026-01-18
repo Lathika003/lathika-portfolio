@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lathika Nipun Abeysingha | Graphic Designer</title>
+    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- DevIcon for Software Logos -->
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+
+<body>
+
+    <!-- Theme Toggle Switch -->
+    <div class="theme-switch-wrapper">
+        <i class="fas fa-moon theme-icon"></i> <!-- Icon added -->
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <!-- Interactive Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <!-- Left Side: Profile -->
+            <div class="hero-left">
+                <div class="profile-container">
+                    <!-- Rotating Elements -->
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-satellite"></div>
+
+                    <div class="profile-ring">
+                        <img src="images/profile.jpg" alt="Lathika Nipun Abeysingha" class="profile-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Text -->
+            <div class="hero-right">
+                <h1>Lathika Nipun Abeysingha</h1>
+                <h2 class="subtitle">Graphic Designer | IT Undergraduate</h2>
+                <p class="tagline">"Turning Pixels into Perfection."</p>
+
+                <!-- Minimal Experience Counter (No Box) -->
+                <div class="experience-minimal">
+                    <span class="exp-count" data-target="5">0</span><span class="exp-plus">+</span>
+                    <p>Years of Professional Experience</p>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#gallery" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- minimal Education Section -->
+    <section id="education" class="education-section">
+        <div class="container">
+            <h3 class="subsection-title">Education & Qualifications</h3>
+            <div class="edu-grid">
+                <!-- Degree -->
+                <div class="edu-item reveal">
+                    <div class="edu-dot"></div>
+                    <div class="edu-content">
+                        <h4>BSc in IT (Undergraduate)</h4>
+                        <p>University of Vavuniya</p>
+                    </div>
+                </div>
+                <!-- Diploma -->
+                <div class="edu-item reveal">
+                    <div class="edu-dot"></div>
+                    <div class="edu-content">
+                        <h4>Diploma in Graphic Design</h4>
+                        <p>Sri Lanka Institute of Printing (SLIOP)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Creative <span class="accent">Arsenal</span></h2>
+            <div class="skills-grid">
+
+                <div class="skill-card master-skill reveal">
+                    <div class="skill-info">
+                        <div class="skill-header">
+                            <!-- Photoshop Local Icon -->
+                            <img src="tool icons/photoshop.png" alt="Photoshop" class="accent-icon">
+                            <h3>Adobe Photoshop</h3>
+                            <span class="badge">MASTER</span>
+                        </div>
+                        <span class="percentage" data-target="98">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" data-width="98%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-item reveal">
+                        <div class="skill-info-row">
+                            <!-- Illustrator Local Icon -->
+                            <img src="tool icons/illustrator.png" alt="Illustrator" class="skill-icon-img">
+                            <span>Adobe Illustrator</span>
+                            <span class="skill-perc" data-target="85">0%</span>
+                        </div>
+                        <div class="progress-bar-bg small">
+                            <div class="progress-bar-fill" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item reveal">
+                        <div class="skill-info-row">
+                            <!-- CorelDRAW Local Icon -->
+                            <img src="tool icons/corel.png" alt="CorelDRAW" class="skill-icon-img">
+                            <span>CorelDRAW</span>
+                            <span class="skill-perc" data-target="85">0%</span>
+                        </div>
+                        <div class="progress-bar-bg small">
+                            <div class="progress-bar-fill" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item reveal">
+                        <div class="skill-info-row">
+                            <!-- Premiere Pro Local Icon -->
+                            <img src="tool icons/premiere-pro.png" alt="Premiere Pro" class="skill-icon-img">
+                            <span>Adobe Premiere Pro</span>
+                            <span class="skill-perc" data-target="70">0%</span>
+                        </div>
+                        <div class="progress-bar-bg small">
+                            <div class="progress-bar-fill" data-width="70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item reveal">
+                        <div class="skill-info-row">
+                            <!-- InDesign Local Icon -->
+                            <img src="tool icons/indesign.png" class="skill-icon-img" alt="Adobe InDesign">
+                            <span>Adobe InDesign</span>
+                            <span class="skill-perc" data-target="50">0%</span>
+                        </div>
+                        <div class="progress-bar-bg small">
+                            <div class="progress-bar-fill" data-width="50%"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Sliding Gallery -->
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">My <span class="accent">Work</span></h2>
+
+        <div class="slider-container">
+            <div class="slider-track">
+                <!-- Original Set of Images (1-20) -->
+                <div class="slide"><img src="images/design1.jpg" alt="Design 1"></div>
+                <div class="slide"><img src="images/design2.jpg" alt="Design 2"></div>
+                <!-- ... Images continue ... -->
+                <div class="slide"><img src="images/design3.jpg" alt="Design 3"></div>
+                <div class="slide"><img src="images/design4.jpg" alt="Design 4"></div>
+                <div class="slide"><img src="images/design5.jpg" alt="Design 5"></div>
+                <div class="slide"><img src="images/design6.jpg" alt="Design 6"></div>
+                <div class="slide"><img src="images/design7.jpg" alt="Design 7"></div>
+                <div class="slide"><img src="images/design8.jpg" alt="Design 8"></div>
+                <div class="slide"><img src="images/design9.jpg" alt="Design 9"></div>
+                <div class="slide"><img src="images/design10.jpg" alt="Design 10"></div>
+                <div class="slide"><img src="images/design11.jpg" alt="Design 11"></div>
+                <div class="slide"><img src="images/design12.jpg" alt="Design 12"></div>
+                <div class="slide"><img src="images/design13.jpg" alt="Design 13"></div>
+                <div class="slide"><img src="images/design14.jpg" alt="Design 14"></div>
+                <div class="slide"><img src="images/design15.jpg" alt="Design 15"></div>
+                <div class="slide"><img src="images/design16.jpg" alt="Design 16"></div>
+                <div class="slide"><img src="images/design17.jpg" alt="Design 17"></div>
+                <div class="slide"><img src="images/design18.jpg" alt="Design 18"></div>
+                <div class="slide"><img src="images/design19.jpg" alt="Design 19"></div>
+                <div class="slide"><img src="images/design20.jpg" alt="Design 20"></div>
+
+                <!-- Duplicate Set for Infinite Loop -->
+                <div class="slide"><img src="images/design1.jpg" alt="Design 1"></div>
+                <div class="slide"><img src="images/design2.jpg" alt="Design 2"></div>
+                <div class="slide"><img src="images/design3.jpg" alt="Design 3"></div>
+                <div class="slide"><img src="images/design4.jpg" alt="Design 4"></div>
+                <div class="slide"><img src="images/design5.jpg" alt="Design 5"></div>
+                <div class="slide"><img src="images/design6.jpg" alt="Design 6"></div>
+                <div class="slide"><img src="images/design7.jpg" alt="Design 7"></div>
+                <div class="slide"><img src="images/design8.jpg" alt="Design 8"></div>
+                <div class="slide"><img src="images/design9.jpg" alt="Design 9"></div>
+                <div class="slide"><img src="images/design10.jpg" alt="Design 10"></div>
+                <div class="slide"><img src="images/design11.jpg" alt="Design 11"></div>
+                <div class="slide"><img src="images/design12.jpg" alt="Design 12"></div>
+                <div class="slide"><img src="images/design13.jpg" alt="Design 13"></div>
+                <div class="slide"><img src="images/design14.jpg" alt="Design 14"></div>
+                <div class="slide"><img src="images/design15.jpg" alt="Design 15"></div>
+                <div class="slide"><img src="images/design16.jpg" alt="Design 16"></div>
+                <div class="slide"><img src="images/design17.jpg" alt="Design 17"></div>
+                <div class="slide"><img src="images/design18.jpg" alt="Design 18"></div>
+                <div class="slide"><img src="images/design19.jpg" alt="Design 19"></div>
+                <div class="slide"><img src="images/design20.jpg" alt="Design 20"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer-section">
+        <div class="container">
+            <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+            <p class="footer-text">Ready to bring your vision to life?</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt mobile-icon"></i>
+                    <span>+94 71 971 9979</span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://web.facebook.com/lathika.nipun.7" target="_blank" rel="noopener noreferrer"
+                    class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/lathikanip/" target="_blank" rel="noopener noreferrer"
+                    class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@lathikanipun2244" target="_blank" rel="noopener noreferrer"
+                    class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.behance.net/lathikanipun" target="_blank" rel="noopener noreferrer"
+                    class="social-btn behance"><i class="fab fa-behance"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Lathika Nipun Abeysingha. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
