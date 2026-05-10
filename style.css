@@ -637,12 +637,17 @@ h4 {
     position: relative;
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    cursor: grab;
+}
+
+.slider-container:active {
+    cursor: grabbing;
 }
 
 .slider-track {
     display: flex;
     width: calc(330px * 40);
-    animation: scroll 60s linear infinite;
+    /* Animation handled by JavaScript now */
 }
 
 .slide {
@@ -670,17 +675,7 @@ h4 {
 }
 
 .slider-track.paused {
-    animation-play-state: paused;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-330px * 20));
-    }
+    /* No longer needed with JS animation */
 }
 
 /* Lightbox Modal */
@@ -761,6 +756,25 @@ h4 {
     border: none;
     color: var(--text-color);
     box-shadow: var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.whatsapp-contact:hover {
+    background: #25D366;
+    color: #fff;
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-contact:hover .mobile-icon {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
 }
 
 .footer-text {

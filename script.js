@@ -288,37 +288,151 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal, .experience-minimal').forEach(el => observer.observe(el));
 
-    // --- Lightbox ---
+    // --- Draggable & Auto-scrolling Gallery ---
+    const sliderContainer = document.querySelector('.slider-container');
     const sliderTrack = document.querySelector('.slider-track');
     const slides = document.querySelectorAll('.slide img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.close-btn');
 
-    if (sliderTrack && lightbox) {
-        slides.forEach(img => {
-            img.addEventListener('click', () => {
-                sliderTrack.style.animationPlayState = 'paused';
-                lightbox.style.display = 'flex';
-                setTimeout(() => lightbox.classList.add('show'), 10);
-                lightboxImg.src = img.src;
-            });
-        });
+    if (sliderTrack && sliderContainer) {
+        let isDown = false;
+        let startX;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationId;
+        let isPaused = false;
+        
+        // 20 images * (300px width + 30px margin) = 6600px
+        const slideWidth = 330;
+        const totalOriginalSlides = 20;
+        const resetTranslate = slideWidth * totalOriginalSlides;
+        const scrollSpeed = 1; // pixels per frame
 
-        const closeLightbox = () => {
-            lightbox.classList.remove('show');
-            setTimeout(() => {
-                lightbox.style.display = 'none';
-                sliderTrack.style.animationPlayState = 'running';
-            }, 300);
+        const autoScroll = () => {
+            if (!isDown && !isPaused) {
+                currentTranslate -= scrollSpeed;
+                if (currentTranslate <= -resetTranslate) {
+                    currentTranslate += resetTranslate;
+                }
+                sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+            }
+            animationId = requestAnimationFrame(autoScroll);
         };
+        
+        autoScroll();
 
-        closeBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+        // Drag logic
+        let dragDistance = 0;
+        let dragStartX = 0;
+
+        sliderContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            sliderContainer.style.cursor = 'grabbing';
+            startX = e.pageX;
+            dragStartX = e.pageX;
+            dragDistance = 0;
+            prevTranslate = currentTranslate;
         });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            if (isDown) {
+                isDown = false;
+                sliderContainer.style.cursor = 'grab';
+            }
         });
+
+        sliderContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            sliderContainer.style.cursor = 'grab';
+        });
+
+        sliderContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX;
+            dragDistance = Math.abs(x - dragStartX);
+            const walk = (x - startX);
+            currentTranslate = prevTranslate + walk;
+            
+            // Infinite boundary handling during drag
+            if (currentTranslate > 0) {
+                currentTranslate -= resetTranslate;
+                startX = e.pageX;
+                prevTranslate = currentTranslate;
+            } else if (currentTranslate <= -resetTranslate) {
+                currentTranslate += resetTranslate;
+                startX = e.pageX;
+                prevTranslate = currentTranslate;
+            }
+
+            sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        });
+
+        // Touch events for mobile
+        sliderContainer.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX;
+            dragStartX = e.touches[0].pageX;
+            dragDistance = 0;
+            prevTranslate = currentTranslate;
+        });
+
+        sliderContainer.addEventListener('touchend', () => {
+            isDown = false;
+        });
+
+        sliderContainer.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX;
+            dragDistance = Math.abs(x - dragStartX);
+            const walk = (x - startX);
+            currentTranslate = prevTranslate + walk;
+            
+            if (currentTranslate > 0) {
+                currentTranslate -= resetTranslate;
+                startX = e.touches[0].pageX;
+                prevTranslate = currentTranslate;
+            } else if (currentTranslate <= -resetTranslate) {
+                currentTranslate += resetTranslate;
+                startX = e.touches[0].pageX;
+                prevTranslate = currentTranslate;
+            }
+
+            sliderTrack.style.transform = `translateX(${currentTranslate}px)`;
+        }, { passive: true });
+
+        // --- Lightbox ---
+        if (lightbox) {
+            slides.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    if (dragDistance > 5) {
+                        e.preventDefault();
+                        return; // Don't open lightbox if dragging
+                    }
+                    isPaused = true;
+                    lightbox.style.display = 'flex';
+                    setTimeout(() => lightbox.classList.add('show'), 10);
+                    lightboxImg.src = img.src;
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('show');
+                setTimeout(() => {
+                    lightbox.style.display = 'none';
+                    isPaused = false;
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+            });
+        }
     }
 });
