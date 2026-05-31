@@ -15,14 +15,32 @@
 
 <body>
 
-    <!-- Theme Toggle Switch -->
-    <div class="theme-switch-wrapper">
-        <i class="fas fa-moon theme-icon"></i> <!-- Icon added -->
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-        </label>
-    </div>
+    <!-- Liquid Glass Navbar -->
+    <nav id="navbar" class="glass-navbar">
+        <a href="#" class="nav-logo">LN<span class="nav-logo-dot">.</span></a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#" class="nav-link active">Home</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#gallery" class="nav-link">Work</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+            <!-- Theme Toggle (moved inside navbar) -->
+            <div class="theme-switch-wrapper">
+                <i class="fas fa-moon theme-icon"></i>
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <!-- Interactive Background -->
     <canvas id="bg-canvas"></canvas>
