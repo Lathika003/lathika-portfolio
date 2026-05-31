@@ -455,4 +455,50 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- Mobile Hamburger Menu ---
+    const navHamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-link');
+
+    if (navHamburger && navLinks) {
+        navHamburger.addEventListener('click', () => {
+            navHamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navHamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
+    // --- Theater.js Typing Animation ---
+    if (typeof theaterJS !== 'undefined') {
+        const theater = theaterJS({
+            locale: 'en'
+        });
+
+        theater
+            .on('type:start, erase:start', function () {
+                const actor = theater.getCurrentActor();
+                actor.$element.classList.add('actor__content--typing');
+            })
+            .on('type:end, erase:end', function () {
+                const actor = theater.getCurrentActor();
+                actor.$element.classList.remove('actor__content--typing');
+            });
+
+        theater
+            .addActor('tagline', { speed: 0.8, accuracy: 0.8 }, '#theater-tagline')
+            .addScene('tagline:Turning Pixels into Perfection.', 2000)
+            .addScene('tagline:Graphic Designer & Visual Artist.', 1500)
+            .addScene('tagline:UI/UX Enthusiast.', 1500)
+            .addScene('tagline:Creative Thinker.', 1500)
+            .addScene('tagline:IT Undergraduate.', 1500)
+            .addScene(theater.replay.bind(theater));
+    }
 });
