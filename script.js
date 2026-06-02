@@ -501,4 +501,85 @@ document.addEventListener('DOMContentLoaded', () => {
             .addScene('tagline:IT Undergraduate.', 1500)
             .addScene(theater.replay.bind(theater));
     }
+    // --- Anime.js Professional Headings ---
+    function initAnimeHeadings() {
+        if (typeof anime === 'undefined') return;
+
+        function wrapTextNodes(element) {
+            const childNodes = Array.from(element.childNodes);
+            const fragment = document.createDocumentFragment();
+
+            childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent;
+                    if (!text.trim()) {
+                        fragment.appendChild(document.createTextNode(text));
+                        return;
+                    }
+                    
+                    const words = text.split(/(\s+)/);
+                    words.forEach(word => {
+                        if (word === '') return;
+                        if (word.trim() === '') {
+                            fragment.appendChild(document.createTextNode(word));
+                            return;
+                        }
+                        const wordSpan = document.createElement('span');
+                        wordSpan.className = 'anime-word';
+                        wordSpan.style.display = 'inline-block';
+                        wordSpan.style.overflow = 'hidden';
+                        wordSpan.style.padding = '0.15em 0';
+                        wordSpan.style.margin = '-0.15em 0';
+                        wordSpan.style.verticalAlign = 'bottom';
+                        
+                        for (let i = 0; i < word.length; i++) {
+                            const letterSpan = document.createElement('span');
+                            letterSpan.className = 'anime-letter';
+                            letterSpan.style.display = 'inline-block';
+                            letterSpan.style.transformOrigin = '50% 100%';
+                            letterSpan.style.opacity = '0';
+                            letterSpan.style.transform = 'translateY(150%) rotateX(-90deg)';
+                            letterSpan.textContent = word[i];
+                            wordSpan.appendChild(letterSpan);
+                        }
+                        fragment.appendChild(wordSpan);
+                    });
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.tagName !== 'BR') {
+                        wrapTextNodes(node); 
+                    }
+                    fragment.appendChild(node);
+                }
+            });
+            
+            element.innerHTML = '';
+            element.appendChild(fragment);
+        }
+
+        const headings = document.querySelectorAll('h1, h2.subtitle, h2.section-title, h3.subsection-title, .edu-content h4, .skill-header h3');
+
+        const animeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    anime({
+                        targets: entry.target.querySelectorAll('.anime-letter'),
+                        translateY: ['150%', '0%'],
+                        rotateX: [-90, 0],
+                        opacity: [0, 1],
+                        easing: "easeOutExpo",
+                        duration: 1200,
+                        delay: anime.stagger(30, {start: 50})
+                    });
+                    animeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        headings.forEach(heading => {
+            wrapTextNodes(heading);
+            animeObserver.observe(heading);
+        });
+    }
+
+    initAnimeHeadings();
 });
